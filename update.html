@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipe Memerizer</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f8f9fa;
+          margin: 0;
+          padding: 0;
+      }
+      .container {
+          margin-top: 5%;
+      }
+      .card {
+          background-color: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+      }
+      .form-group label {
+          font-weight: bold;
+          display: block;
+          margin-bottom: 5px;
+      }
+      .form-group input, .form-group textarea {
+          width: 100%;
+          border: 1px solid #ced4da;
+          border-radius: 5px;
+          padding: 10px;
+          margin-bottom: 15px;
+      }
+      .form-group textarea {
+          resize: vertical;
+          height: 100px;
+      }
+      .btn-primary {
+          background-color: #007bff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          color: #ffffff;
+          font-size: 16px;
+      }
+      .btn-primary:hover {
+          background-color: #0056b3;
+      }
+      </style>
+   
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="col-6 mx auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Update Receipe</h2>
+            <hr>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Receipe name</label>
+              <input name= "name" type="text" value="{{receipe.name}}" class="form-control" >
+             
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" name="description">Receipe</label>
+             <textarea name="description" value="" class="form-control">{{receipe.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Image</label>
+                <input name="image" value="{{receipe.image}}" type="file" class="form-control" >
+               
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          
+        
+    </div>
+    
+</body>
+</html> 

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipe Memerizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 5%;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .table th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .actions-column {
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="col-6 mx auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Add Receipe</h2>
+            <hr>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Receipe name</label>
+              <input name= "name" type="text" class="form-control" >
+             
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" name="description">Receipe</label>
+             <textarea name="description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Image</label>
+                <input name="image" type="file" class="form-control" >
+               
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+<hr>
+<form >
+          <div class="mt-5">
+            <div class="mx-auto col-6">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1">Search Food</label>
+                    <input name= "search" type="text" value="{{receipe.name}}" class="form-control" >
+                   
+                  </div>
+                  <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+          </div>
+        </form>
+
+          <table class="table mt-5">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Recipe name</th>
+                <th scope="col">Descripion</th>
+                <th scope="col">Image</th>
+              </tr>
+            </thead>
+
+
+            <tbody>
+              {% for receipes in receipe %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{receipes.name}}</td>
+                <td>{{receipes.description}}</td>
+                <td>{{receipes.image}}</td>
+                <td class="actions">
+                    <a href="/delete/{{receipes.id}}" class="btn btn-danger m-2">Delete</a>
+                    <a href="/update/{{receipes.id}}" class="btn btn-success">Update</a>
+  
+                </td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+        
+    </div>
+    
+</body>
+</html> 
