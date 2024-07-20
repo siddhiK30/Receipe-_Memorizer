@@ -1,7 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class Receipe(models.Model):
-    name=models.CharField(max_length=1000)
-    description=models.TextField()
-    image=models.ImageField(upload_to="receipe")
+class Student(models.Model):
+    name= models.CharField(max_length=100)
+    age=models.IntegerField()
+
+
+class product(models.Model):
+    price=models.IntegerField()
+
+class vegie(models.Model):
+    name=models.ImageField()

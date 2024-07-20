@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class VegieConfig(AppConfig):
+class HomeConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'vegie'
+    name = 'home'
